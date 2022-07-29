@@ -1,11 +1,15 @@
 import React from "react";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import NavBar from "./components/NavBar";
 
 function App() {
   return (
     <>
-      <BrowserRouter>{/* Aqui poner la app */}</BrowserRouter>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<NavBar />} />
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }
