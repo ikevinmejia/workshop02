@@ -1,32 +1,47 @@
-import { toggleButtonClasses } from '@mui/material';
 import React, { useEffect, useState } from 'react'
-import { BiChevronLeft,BiDotsHorizontalRounded } from "react-icons/bi";
+import { BiChevronLeft,BiDotsHorizontalRounded,BiX } from "react-icons/bi";
 import { NavLink } from 'react-router-dom';
 import CardProfile from '../components/CardProfile';
-import FormModalEdit from '../components/FormModalEdit';
 import NavBar from '../components/NavBar';
+import { patchData } from '../helpers/CRUD';
 import { urlUser } from '../helpers/urls';
 
 const Profile = () => {
 
     const [Profile, setProfile] = useState([])
+    const [nombre, setNombre] = useState()
+    
 
     useEffect(() => {
         getData();
-    })
+    },[Profile])
+
     const getData = async() => {
         const resp = await fetch(`${urlUser}/2`)
         const data = await resp.json()
         setProfile(data)    
     }
 
-    const handleOpenEdit = () => {
-        let element = document.getElementsByClassName("clickonoff")
-        if(element.classList.contains("flex") == true){
-            element.classList.replace("flex","hidden")
-        }
-    } 
+    const handleSubmit = async(e) => {
+        e.preventDefault()
+        await patchData(`${urlUser}/2`,{name:nombre})
+        
+    }
+    const handleOnChangeName = ({target}) => {
+            setNombre(target.value)
+    }
 
+    const apachurramesta = () => {
+        const element = document.querySelector(".clickonoff")
+        if(element.classList.contains("flex")) {
+            element.classList.replace("flex","hidden")
+        }else{
+            if(element.classList.contains("hidden")){
+                element.classList.replace("hidden","flex")
+            }
+        }
+    }
+    
     const {name} = Profile;
   return (
     <div className='m-0 container'>
@@ -34,11 +49,11 @@ const Profile = () => {
             <NavLink to="/Home" className="z-10 mt-5 ml-5 h-36">
                 <BiChevronLeft color='white' size={45}/>
             </NavLink>
-            <BiDotsHorizontalRounded onClick={handleOpenEdit} color='white' size={45} className="z-10 mt-5 mr-5"/>
-            <form className='clickonoff flex absolute right-0 z-10 bg-white top-14 mr-5 rounded-3xl '>
-                <input className=' border-none rounded-l-3xl' type="text" placeholder='name' />
+            <BiDotsHorizontalRounded onClick ={apachurramesta} color='white' size={45} className="z-10 mt-5 mr-5"/>
+            <form onSubmit={handleSubmit} className='clickonoff hidden absolute right-0 z-50 bg-white top-14 mr-5 rounded-3xl justify-center items-center'> 
+                <input onChange={handleOnChangeName} className=' border-none rounded-l-3xl border-transparent focus:border-transparent focus:ring-0' type="text" placeholder='Edit name' />
                 <button className='mr-2' type='submit'>Ok</button>
-            </form>
+            </form> 
             <img className='absolute top-0 z-0 w-full h-[220px]' src="https://res.cloudinary.com/dnont3pur/image/upload/v1659122350/Workshop-2/monal_bnyjjg.jpg" alt="portada" />
         </header>
             <main className='m-0 container bg-[#d6999291]'>
