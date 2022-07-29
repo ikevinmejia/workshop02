@@ -1,10 +1,11 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
+import Login from "../components/Login";
 
 function App() {
   return (
     <>
-      <BrowserRouter>{/* Aqui poner la app */}</BrowserRouter>
+      <BrowserRouter><Login /></BrowserRouter>
 
     </>
   );
