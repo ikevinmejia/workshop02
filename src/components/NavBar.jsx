@@ -6,6 +6,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import PersonIcon from "@mui/icons-material/Person";
+import { Link } from "react-router-dom";
 import { Contexto } from "../context/Context";
 
 export default function NavBar() {
@@ -28,7 +29,7 @@ export default function NavBar() {
       onChange={handleChange}
       className="fixed bottom-0"
     >
-      <BottomNavigationAction label="Home" value="Home" icon={<HomeIcon />} />
+      <Link to="/home"><BottomNavigationAction label="Home" value="Home" icon={<HomeIcon />} /></Link>
       <BottomNavigationAction
         label="Search"
         value="search"
@@ -45,11 +46,11 @@ export default function NavBar() {
         value="notifications"
         icon={<NotificationsIcon />}
       />
-      <BottomNavigationAction
+      <Link to="/profile"><BottomNavigationAction
         label="Profile"
         value="profile"
         icon={<PersonIcon />}
-      />
+      /></Link>
     </BottomNavigation>
   );
 }

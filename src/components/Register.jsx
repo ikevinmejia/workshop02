@@ -34,7 +34,7 @@ const Register = () => {
         }
 
         postData(cuenta, url)
-        // navigate('/')
+        navigate('/')
 
     }
 
