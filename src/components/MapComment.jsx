@@ -1,6 +1,6 @@
 import React from "react";
 
-function MapComment({ usuario }) {
+function MapComment({ usuario, comentario }) {
   return (
     <>
       <div className="w-full max-w-4xl px-4 mt-4">

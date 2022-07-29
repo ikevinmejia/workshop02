@@ -5,19 +5,19 @@ const Contexto = createContext()
 
 function ContextProvider() {
 
-    // Aquí se crea lo que se necesite del contexto
+  // Aquí se crea lo que se necesite del contexto
 
-    const data = {
-    
-    }
+  const data = {
+
+  }
 
 
-    return (
+  return (
     <Contexto.Provider value={data}>{children}</Contexto.Provider>
   )
 }
 
 export {
-    ContextProvider,
-    Contexto
+  ContextProvider,
+  Contexto
 }
