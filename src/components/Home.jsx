@@ -11,7 +11,7 @@ import { getData } from "../helpers/CRUD";
 const Home = () => {
   const { showModal } = useContext(Contexto);
 
-  const [designPost, setDesignPost] = useState(initial);
+  const [designPost, setDesignPost] = useState({});
 
   useEffect(() => {
     getData(setDesignPost, "https://data-sprint-02.herokuapp.com/post");
