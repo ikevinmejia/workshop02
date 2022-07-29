@@ -3,12 +3,16 @@ import { BrowserRouter } from "react-router-dom";
 import Home from "../components/Home";
 import Login from "../components/Login";
 import Register from "../components/Register";
+import { ContextProvider } from "../context/Context";
 
 function App() {
   return (
     <>
-      <BrowserRouter><Home /></BrowserRouter>
-
+      <BrowserRouter>
+        <ContextProvider>
+          <Home />
+        </ContextProvider>
+      </BrowserRouter>
     </>
   );
 }
