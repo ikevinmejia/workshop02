@@ -2,6 +2,7 @@ import React from 'react'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import logo from '../images/logo.png'
+import { ColorButton } from '../styled/StyledComponents';
 
 const Login = () => {
     return (
@@ -20,7 +21,7 @@ const Login = () => {
                     autoComplete="current-password"
                 />
 
-                <ColorButton variant="contained">Custom CSS</ColorButton>
+                <ColorButton variant="contained">Login</ColorButton>
             </form>
 
 
