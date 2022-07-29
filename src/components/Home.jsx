@@ -10,49 +10,49 @@ import { getData } from "../helpers/CRUD";
 
 const Home = () => {
   const { showModal } = useContext(Contexto);
-
-  const [designPost, setDesignPost] = useState(initial);
+  const url = "https://data-sprint-02.herokuapp.com/post";
+  const [post, setPost] = useState(null);
 
   useEffect(() => {
-    getData(setDesignPost, "https://data-sprint-02.herokuapp.com/post");
+    getData(setPost, url);
   }, []);
 
-  console.log(designPost);
+  console.log(post);
 
-  if (designPost != null) {
-    return (
-      <div className="container h-screen p-5 overflow-hidden">
-        <div className="flex items-center justify-between">
-          <img src={logo} alt="" className="w-52" />
-          <div className="flex gap-2">
-            <div>
-              <img src={corazon} alt="" className="object-cover" />
-            </div>
-            <div>
-              <img src={mensajes} alt="" />
-            </div>
+  return (
+    <div className="container h-screen overflow-hidden">
+      <div className="flex items-center justify-between p-5">
+        <img src={logo} alt="" className="w-52" />
+        <div className="flex gap-2">
+          <div>
+            <img src={corazon} alt="" className="object-cover" />
+          </div>
+          <div>
+            <img src={mensajes} alt="" />
           </div>
         </div>
-        {showModal && <FormModal />}
-
-        <div
-          className="flex flex-col items-center gap-5 mt-10 overflow-y-scroll"
-          style={{ height: "85%" }}
-        >
-          {designPost.map((e) => (
-            <DesignPost
-              imagen={e.img}
-              key={e.id}
-              nombre={e.name}
-              descripcion={e.description}
-            />
-          ))}
-        </div>
-
-        <NavBar />
       </div>
-    );
-  }
+      {showModal && <FormModal />}
+
+      <div
+        className="flex flex-col items-center gap-5 p-5 mt-10 overflow-y-scroll"
+        style={{ height: "85%" }}
+      >
+        {post != null
+          ? post.map((e) => (
+              <DesignPost
+                imagen={e.img}
+                key={e.id}
+                nombre={e.name}
+                descripcion={e.description}
+              />
+            ))
+          : console.log("puto")}
+      </div>
+
+      <NavBar />
+    </div>
+  );
 };
 
 export default Home;
