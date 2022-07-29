@@ -34,5 +34,3 @@ export const patchData = async (url, data) => {
     console.log(error);
   }
 };
-
-export { getData, postData, patchData, deleteData };
