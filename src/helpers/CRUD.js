@@ -35,4 +35,3 @@ export const patchData = async (url, data) => {
   }
 };
 
-export { getData, postData, patchData, deleteData };
