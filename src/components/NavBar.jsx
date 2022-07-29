@@ -19,7 +19,7 @@ export default function NavBar() {
       sx={{ width: "100%" }}
       value={value}
       onChange={handleChange}
-      className="fixed bottom-0"
+      classNameName="fixed bottom-0"
     >
       <BottomNavigationAction label="Home" value="Home" icon={<HomeIcon />} />
       <BottomNavigationAction
