@@ -5,9 +5,7 @@ import NavBar from "./components/NavBar";
 function App() {
   return (
     <>
-      <BrowserRouter>
-        <Routes></Routes>
-      </BrowserRouter>
+      <BrowserRouter>{/* Aqui poner la app */}</BrowserRouter>
     </>
   );
 }
