@@ -4,7 +4,7 @@ import Button from '@mui/material/Button';
 import logo from '../images/logo.png'
 import { ColorButton } from '../styled/StyledComponents';
 import { getData } from '../helpers/CRUD';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
@@ -25,12 +25,14 @@ const Login = () => {
                 localStorage.setItem('indice', i)
                 localStorage.setItem('id', data[i].id)
                 alert('se ha iniciado')
-                // navigate('/home')
+                navigate('/home')
                 break;
+            } else {
+                alert('error de usuario o contraseña')
             }
 
         }
-        alert('error de usuario o contraseña')
+
         setUser('')
         setPassword('')
     }
@@ -51,7 +53,7 @@ const Login = () => {
                     autoComplete="current-password"
                 />
                 <ColorButton variant="contained" type='submit' >Login</ColorButton>
-                <Button variant="contained">Register</Button>
+                <Link to="/register"><Button variant="contained">Register</Button></Link>
             </form>
 
 

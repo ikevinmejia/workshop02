@@ -3,11 +3,12 @@ import { BrowserRouter } from "react-router-dom";
 import Home from "../components/Home";
 import Login from "../components/Login";
 import Register from "../components/Register";
+import Routers from "../routers/Routers";
 
 function App() {
   return (
     <>
-      <BrowserRouter><Home /></BrowserRouter>
+      <BrowserRouter><Routers /></BrowserRouter>
 
     </>
   );
