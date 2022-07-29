@@ -1,30 +1,27 @@
-const getData = async (url, state) => {
+import axios from "axios";
+
+export const getData = async (state, url) => {
+  const peticion = await axios.get(url);
+  state(peticion.data);
+};
+
+export const postData = async (object = {}, url) => {
   try {
-    const respuesta = await fetch(url);
-
-    const datos = await respuesta.json();
-
-    state(datos);
+    await axios.post(url, object);
   } catch (error) {
     console.log(error);
   }
 };
 
-const postData = async (url, data) => {
+export const PutData = async (url, object = {}) => {
   try {
-    await fetch(url, {
-      method: "POST",
-      body: JSON.stringify(data),
-      headers: {
-        "Content-Type": "application/json; charset=UTF-8",
-      },
-    });
+    await axios.put(url, object);
   } catch (error) {
-    console.error(error);
+    console.log(error);
   }
 };
 
-const patchData = async (url, data) => {
+export const patchData = async (url, data) => {
   try {
     await fetch(url, {
       method: "PATCH",
@@ -34,17 +31,7 @@ const patchData = async (url, data) => {
       },
     });
   } catch (error) {
-    console.error(error);
-  }
-};
-
-const deleteData = async (url) => {
-  try {
-    await fetch(url, {
-      method: "DELETE",
-    });
-  } catch (error) {
-    console.error(error);
+    console.log(error);
   }
 };
 

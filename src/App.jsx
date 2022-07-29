@@ -5,6 +5,7 @@ function App() {
   return (
     <>
       <BrowserRouter>{/* Aqui poner la app */}</BrowserRouter>
+
     </>
   );
 }
