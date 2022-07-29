@@ -9,50 +9,52 @@ import { Contexto } from "../context/Context";
 import { getData } from "../helpers/CRUD";
 
 const Home = () => {
-  const { showModal } = useContext(Contexto);
+    const { showModal } = useContext(Contexto);
+    const url = "https://data-sprint-02.herokuapp.com/post"
+    const [post, setPost] = useState(null);
 
-  const [designPost, setDesignPost] = useState(initial);
+    useEffect(() => {
+        getData(setPost, url);
+    }, []);
 
-  useEffect(() => {
-    getData(setDesignPost, "https://data-sprint-02.herokuapp.com/post");
-  }, []);
+    console.log(post);
 
-  console.log(designPost);
 
-  if (designPost != null) {
     return (
-      <div className="container h-screen p-5 overflow-hidden">
-        <div className="flex items-center justify-between">
-          <img src={logo} alt="" className="w-52" />
-          <div className="flex gap-2">
-            <div>
-              <img src={corazon} alt="" className="object-cover" />
+        <div className="container h-screen p-5 overflow-hidden">
+            <div className="flex items-center justify-between">
+                <img src={logo} alt="" className="w-52" />
+                <div className="flex gap-2">
+                    <div>
+                        <img src={corazon} alt="" className="object-cover" />
+                    </div>
+                    <div>
+                        <img src={mensajes} alt="" />
+                    </div>
+                </div>
             </div>
-            <div>
-              <img src={mensajes} alt="" />
+            {showModal && <FormModal />}
+
+            <div
+                className="flex flex-col items-center gap-5 mt-10 overflow-y-scroll"
+                style={{ height: "85%" }}
+            >
+                {post != null ? post.map((e) =>
+                    <DesignPost
+                        imagen={e.img}
+                        key={e.id}
+                        nombre={e.name}
+                        descripcion={e.description}
+                    />
+
+
+                ) : console.log("puto")}
             </div>
-          </div>
-        </div>
-        {showModal && <FormModal />}
 
-        <div
-          className="flex flex-col items-center gap-5 mt-10 overflow-y-scroll"
-          style={{ height: "85%" }}
-        >
-          {designPost.map((e) => (
-            <DesignPost
-              imagen={e.img}
-              key={e.id}
-              nombre={e.name}
-              descripcion={e.description}
-            />
-          ))}
+            <NavBar />
         </div>
+    )
 
-        <NavBar />
-      </div>
-    );
-  }
 };
 
 export default Home;
