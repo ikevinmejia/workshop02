@@ -22,36 +22,36 @@ const Home = () => {
 
     return (
         <div className="container h-screen overflow-hidden">
-            <div className="p-5">
-                <div className="flex items-center justify-between">
-                    <img src={logo} alt="" className="w-52" />
-                    <div className="flex gap-2">
-                        <div>
-                            <img src={corazon} alt="" className="object-cover" />
-                        </div>
-                        <div>
-                            <img src={mensajes} alt="" />
-                        </div>
+
+            <div className="flex items-center justify-between p-5">
+                <img src={logo} alt="" className="w-52" />
+                <div className="flex gap-2">
+                    <div>
+                        <img src={corazon} alt="" className="object-cover" />
+                    </div>
+                    <div>
+                        <img src={mensajes} alt="" />
                     </div>
                 </div>
-                {showModal && <FormModal />}
-
-                <div
-                    className="flex flex-col items-center gap-5 mt-10 overflow-y-scroll"
-                    style={{ height: "85%" }}
-                >
-                    {post != null ? post.map((e) =>
-                        <DesignPost
-                            imagen={e.img}
-                            key={e.id}
-                            nombre={e.name}
-                            descripcion={e.description}
-                        />
-
-
-                    ) : console.log("puto")}
-                </div>
             </div>
+            {showModal && <FormModal />}
+
+            <div
+                className="flex flex-col items-center gap-5 p-5 mt-10 overflow-y-scroll"
+                style={{ height: "85%" }}
+            >
+                {post != null ? post.map((e) =>
+                    <DesignPost
+                        imagen={e.img}
+                        key={e.id}
+                        nombre={e.name}
+                        descripcion={e.description}
+                    />
+
+
+                ) : console.log("puto")}
+            </div>
+
             <NavBar />
 
         </div>
