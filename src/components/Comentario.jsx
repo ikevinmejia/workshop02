@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-// import { Contexto } from "../context/Context";
+import React, { useEffect, useState, useContext } from "react";
+import { Contexto } from "../context/Context";
 import MapComment from "./MapComment";
 import axios from "axios";
 import { getData } from "../helpers/CRUD";
