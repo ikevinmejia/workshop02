@@ -5,7 +5,7 @@ import { patchData } from '../helpers/CRUD';
 
 
 const CardProfile = () => {
-
+    // dfdfdf
     const [pintar, setPintar] = useState([])
     const id = localStorage.getItem("id")
 
