@@ -1,35 +1,16 @@
-# template-vite-react-tailwind-v3
+# ¡¡¡¡ ATENCIÓN !!!!
 
-- **template of:** vite + react
-- **tailwindcss:** v3.x
+## Leer atentamente para ejecutar la aplicación, ya sea por descargarla o ver el enlace de despliegue:
 
-## Started
+Hubo un error al momento de desplegar ya que Vercel nos dió un enlace y luego funcionó en el siguiente, entonces hacer caso omiso al enlace del formulario.
+- Enlace de despliegue: https://workshop02-rmxv56m1p-ikevinmejia.vercel.app/
+- Ver la aplicación en vista de iphone 12 pro
 
-```bash
-yarn
-# or `npm install`
-```
+## Se usó VITE en vez de WEBPACK ya que es una tecnología en adopción, por lo tanto se podría considerar como plus.
+- Al descargar o clonar la app ejecutar el comando npm install
+- Para ejecutar el servidor escribir el comando npm run dev
 
----
-
-## Develop
-
-```bash
-yarn dev
-# or `npm run dev`
-```
-
----
-
-## Build
-
-```bash
-yarn build
-# or `npm run build`
-```
-
----
-
-<p align="center">
-<img src="./powered-by-vitawind-bright.png">
-</p>
+Trabajo realizado por:
+- Nuthelk Molina
+- Felipe Jaramillo
+- Kevin Mejia
