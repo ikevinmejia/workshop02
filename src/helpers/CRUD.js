@@ -34,7 +34,3 @@ export const patchData = async (url, data) => {
     console.log(error);
   }
 };
-<<<<<<< HEAD
-=======
-
->>>>>>> Felipe
