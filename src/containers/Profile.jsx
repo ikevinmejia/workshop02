@@ -10,29 +10,29 @@ const Profile = () => {
 
     const [Profile, setProfile] = useState([])
     const [nombre, setNombre] = useState()
-    
+    const element = document.querySelector(".clickonoff")
 
     useEffect(() => {
         getData();
     },[Profile])
 
     const getData = async() => {
-        const resp = await fetch(`${urlUser}/2`)
+        const resp = await fetch(`${urlUser}/20`)
         const data = await resp.json()
         setProfile(data)    
     }
 
     const handleSubmit = async(e) => {
         e.preventDefault()
-        await patchData(`${urlUser}/2`,{name:nombre})
-        
+        await patchData(`${urlUser}/20`,{name:nombre})
+        element.classList.replace("flex","hidden")
     }
     const handleOnChangeName = ({target}) => {
             setNombre(target.value)
     }
 
     const apachurramesta = () => {
-        const element = document.querySelector(".clickonoff")
+        
         if(element.classList.contains("flex")) {
             element.classList.replace("flex","hidden")
         }else{
@@ -42,7 +42,7 @@ const Profile = () => {
         }
     }
     
-    const {name} = Profile;
+    const {name,imgProfile,imgBanner} = Profile;
   return (
     <div className='m-0 container'>
         <header className='relative flex justify-between'>
@@ -54,7 +54,7 @@ const Profile = () => {
                 <input onChange={handleOnChangeName} className=' border-none rounded-l-3xl border-transparent focus:border-transparent focus:ring-0' type="text" placeholder='Edit name' />
                 <button className='mr-2' type='submit'>Ok</button>
             </form> 
-            <img className='absolute top-0 z-0 w-full h-[220px]' src="https://res.cloudinary.com/dnont3pur/image/upload/v1659122350/Workshop-2/monal_bnyjjg.jpg" alt="portada" />
+            <img className='absolute top-0 z-0 w-full h-[220px]' src={imgBanner} alt="portada" />
         </header>
             <main className='m-0 container bg-[#d6999291]'>
                 <section className='flex mt-5 gap-7 justify-center items-center'>
@@ -63,7 +63,7 @@ const Profile = () => {
                         <p className='font-semibold text-sm'>Followers</p>
                     </div>
                     <div>
-                        <img className='w-24 rounded-full relative border-solid border-2 border-blue-400' src="https://res.cloudinary.com/dnont3pur/image/upload/v1659122349/Workshop-2/kirby_nalgon_romykx.png" alt="profile" />
+                        <img className='w-24 rounded-full relative border-solid border-2 border-blue-400' src={imgProfile} alt="profile" />
 
                     </div>
                     <div className='flex flex-col justify-center items-center mt-5'>
