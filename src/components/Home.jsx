@@ -9,15 +9,14 @@ import { Contexto } from "../context/Context";
 import { getData } from "../helpers/CRUD";
 
 const Home = () => {
-  const { showModal } = useContext(Contexto);
+  const { showModal, setDataPost } = useContext(Contexto);
   const url = "https://data-sprint-02.herokuapp.com/post";
   const [post, setPost] = useState(null);
 
   useEffect(() => {
     getData(setPost, url);
-  }, []);
-
-  console.log(post);
+    setDataPost(post);
+  }, [post]);
 
   return (
     <div className="container h-screen overflow-hidden">
@@ -43,6 +42,7 @@ const Home = () => {
               <DesignPost
                 imagen={e.img}
                 key={e.id}
+                id={e.id}
                 nombre={e.name}
                 descripcion={e.description}
               />
