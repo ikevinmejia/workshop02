@@ -2,37 +2,31 @@ import React, { useEffect, useState, useContext } from "react";
 import { Contexto } from "../context/Context";
 import MapComment from "./MapComment";
 import axios from "axios";
+import { getData } from "../helpers/CRUD";
 
 function Comentario({ descripcion }) {
-  const { comentario: coment } = useContext(Contexto);
-  const { comentarios } = coment;
-  // const [zarnaHijueputa, setZarnaHijueputa] = useState("");
-  const { id } = JSON.parse(localStorage.getItem("infoPost"));
+  // const { comentario } = useContext(Contexto);
+  // const { comentarios } = comentario;
+  const [zarnaHijueputa, setZarnaHijueputa] = useState(null);
+  const { id } = JSON.parse(localStorage.getItem("infoPost"))
+  const url = `https://data-sprint-02.herokuapp.com/post/${id}`
 
-  // const { comentarios: dataAxios } = zarnaHijueputa.data;
 
-  // useEffect(() => {
-  //   const funcionSalvadora = async () => {
-  //     const initialNotes = await axios.get(
-  //       `https://data-sprint-02.herokuapp.com/post/${id}`
-  //     );
-  //     setZarnaHijueputa(initialNotes);
-  //   };
-  //   funcionSalvadora();
-  // }, []);
-
-  // console.log(dataAxios);
+  useEffect(() => {
+    getData(setZarnaHijueputa, url)
+  }, [zarnaHijueputa]);
 
   return (
     <div className="flex flex-col items-center justify-start">
       <p className="w-full max-w-4xl px-4 mt-4">{descripcion}</p>
-      {/* {dataAxios != null
-        ? dataAxios.map((e) => (
-            <MapComment key={e} usuario={"kevin"} comentario={e.comentario} />
-          ))
-        : console.log(comentarios)} */}
+      {zarnaHijueputa != null
+        ? zarnaHijueputa.comentarios.map((e, i) => (
+          <MapComment key={i} usuario={"kevin"} comentario={e.comentario} />
+        ))
+        : console.log("comentarios")}
     </div>
   );
+
 }
 
 export default Comentario;

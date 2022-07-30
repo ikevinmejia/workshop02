@@ -1,17 +1,21 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import SendIcon from "@mui/icons-material/Send";
-import { Contexto } from "../context/Context";
-import { patchData } from "../helpers/CRUD";
+import { getData, patchData } from "../helpers/CRUD";
 
 function AddComment() {
   const [input, setInput] = useState("");
-  const { comentario, setComentario } = useContext(Contexto);
+  const [comentario, setComentario] = useState(null);
 
   const { id } = JSON.parse(localStorage.getItem("infoPost"));
+  const url = `https://data-sprint-02.herokuapp.com/post/${id}`
 
   const onChange = ({ target }) => {
     setInput(target.value);
   };
+
+  useEffect(() => {
+    getData(setComentario, url)
+  }, [setComentario])
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -20,13 +24,15 @@ function AddComment() {
       comentario: input,
     };
 
-    comentario.push(nuevoComentario);
 
-    setComentario(comentario);
-    patchData(`https://data-sprint-02.herokuapp.com/post/${id}`, {
-      comentarios: comentario,
-    });
-    console.log(comentario);
+    const aux = comentario.comentarios
+    aux.push(nuevoComentario)
+    console.log(aux)
+
+
+    patchData(`https://data-sprint-02.herokuapp.com/post/${id}`, { comentarios: aux });
+
+
   };
   return (
     <>
