@@ -26,11 +26,15 @@ const Register = () => {
             imgBanner: "https://res.cloudinary.com/dzsd7vfjr/image/upload/v1659126484/1_HSisLuifMO6KbLfPOKtLow_oojji8.jpg",
             followes: "",
             like: "",
-            photos: "https://res.cloudinary.com/dzsd7vfjr/image/upload/v1659126634/pikachu_kiqnnb.webp"
+            photos: [
+                {
+                    img: "https://res.cloudinary.com/dzsd7vfjr/image/upload/v1659126634/pikachu_kiqnnb.webp"
+                }
+            ]
         }
 
         postData(cuenta, url)
-        // navigate('/')
+        navigate('/')
 
     }
 

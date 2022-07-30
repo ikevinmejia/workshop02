@@ -1,62 +1,87 @@
-import React, { useEffect, useState } from 'react'
-import TextField from '@mui/material/TextField';
-import Button from '@mui/material/Button';
-import logo from '../images/logo.png'
-import { ColorButton } from '../styled/StyledComponents';
-import { getData } from '../helpers/CRUD';
-import { useNavigate } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from "react";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import logo from "../images/logo.png";
+import { ColorButton } from "../styled/StyledComponents";
+import { getData } from "../helpers/CRUD";
+import { Link, useNavigate } from "react-router-dom";
+import { Contexto } from "../context/Context";
 
 const Login = () => {
+  const { setDataUser } = useContext(Contexto);
 
-    const [data, setData] = useState(null)
-    const [user, setUser] = useState('')
-    const [password, setPassword] = useState('')
-    const url = "https://data-sprint-02.herokuapp.com/usuarios"
-    let navigate = useNavigate();
-    useEffect(() => {
-        getData(setData, url)
-    }, [data])
+  const [data, setData] = useState(null);
+  const [user, setUser] = useState("");
+  const [password, setPassword] = useState("");
+  const url = "https://data-sprint-02.herokuapp.com/usuarios";
+  let navigate = useNavigate();
+  useEffect(() => {
+    getData(setData, url);
+  }, [data]);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        for (let i = 0; i < data.length; i++) {
+  setDataUser(data);
 
-            if (user == data[i].user && password == data[i].password) {
-                localStorage.setItem('indice', i)
-                localStorage.setItem('id', data[i].id)
-                alert('se ha iniciado')
-                // navigate('/home')
-                break;
-            }
-
-        }
-        alert('error de usuario o contraseña')
-        setUser('')
-        setPassword('')
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    for (let i = 0; i < data.length; i++) {
+      if (user == data[i].user && password == data[i].password) {
+        localStorage.setItem("indice", i);
+        localStorage.setItem("id", data[i].id);
+        localStorage.setItem("nameUser", data[i].nombre);
+        localStorage.setItem("imgUser", data[i].imgProfile);
+        alert("se ha iniciado");
+        navigate("/home");
+        break;
+      } else {
+      }
     }
 
-    return (
-        <div className='container'>
-            <form onSubmit={(e) => handleSubmit(e)} className='flex flex-col items-center justify-center gap-4'>
-                <h1 className='mt-32 text-3xl font-medium text-center' style={{ color: "#FF7674" }}>Login</h1>
-                <div className='flex items-center justify-center'>
-                    <img src={logo} alt="" className='mt-3 mb-10 ml-20' />
-                </div>
+    setUser("");
+    setPassword("");
+  };
 
-                <TextField id="outlined-basic" label="User" variant="outlined" className='w-72' value={user} onChange={(e) => setUser(e.target.value)} />
-                <TextField className=' w-72' value={password} onChange={(e) => setPassword(e.target.value)}
-                    id="outlined-password-input"
-                    label="Password"
-                    type="password"
-                    autoComplete="current-password"
-                />
-                <ColorButton variant="contained" type='submit' >Login</ColorButton>
-                <Button variant="contained">Register</Button>
-            </form>
-
-
+  return (
+    <div className="container">
+      <form
+        onSubmit={(e) => handleSubmit(e)}
+        className="flex flex-col items-center justify-center gap-4"
+      >
+        <h1
+          className="mt-32 text-3xl font-medium text-center"
+          style={{ color: "#FF7674" }}
+        >
+          Login
+        </h1>
+        <div className="flex items-center justify-center">
+          <img src={logo} alt="" className="mt-3 mb-10 ml-20" />
         </div>
-    )
-}
 
-export default Login
+        <TextField
+          id="outlined-basic"
+          label="User"
+          variant="outlined"
+          className="w-72"
+          value={user}
+          onChange={(e) => setUser(e.target.value)}
+        />
+        <TextField
+          className=" w-72"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          id="outlined-password-input"
+          label="Password"
+          type="password"
+          autoComplete="current-password"
+        />
+        <ColorButton variant="contained" type="submit">
+          Login
+        </ColorButton>
+        <Link to="/register">
+          <Button variant="contained">Register</Button>
+        </Link>
+      </form>
+    </div>
+  );
+};
+
+export default Login;
